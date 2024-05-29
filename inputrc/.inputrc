@@ -1,0 +1,11 @@
+# Headline keybindings
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+"\eb": backward-word
+"\ef": forward-word
+"\C-w": backward-kill-word
+"\C-u": backward-kill-line
+"\C-k": kill-line
+"\C-d": kill-word
+"\C-l": kill-whole-line
+
