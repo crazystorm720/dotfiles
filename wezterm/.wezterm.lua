@@ -13,10 +13,10 @@ config.font_size = 12
 -- Enable true color support
 config.set_environment_variables = {
   COLORTERM = "truecolor",
-}
+  }
 
 -- Set the default program to tmux
 config.default_prog = {"tmux", "new-session", "-A", "-s", "default"}
 
 -- Return the configuration to wezterm
-return config
+   return config
