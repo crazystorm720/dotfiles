@@ -1,0 +1,58 @@
+# ~/.shell_common
+
+# History settings
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# Check the window size after each command and update the values of LINES and COLUMNS
+[[ "$SHELL" =~ "bash" ]] && shopt -s checkwinsize
+
+# Enable color support for ls and add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# Custom keybindings
+if [[ "$SHELL" =~ "bash" ]]; then
+    bind '"\C-a": beginning-of-line'
+    bind '"\C-e": end-of-line'
+    bind '"\eb": backward-word'
+    bind '"\ef": forward-word'
+    bind '"\C-w": backward-kill-word'
+    bind '"\C-u": backward-kill-line'
+    bind '"\C-k": kill-line'
+elif [[ "$SHELL" =~ "zsh" ]]; then
+    bindkey '^a' beginning-of-line
+    bindkey '^e' end-of-line
+    bindkey '^[b' backward-word
+    bindkey '^[f' forward-word
+    bindkey '^w' backward-kill-word
+    bindkey '^u' backward-kill-line
+    bindkey '^k' kill-line
+fi
+
+# Alias definitions
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# Conda initialization
+if [ -f "/home/medusa/miniconda3/etc/profile.d/conda.sh" ]; then
+    . "/home/medusa/miniconda3/etc/profile.d/conda.sh"
+fi
+
+# Enable programmable completion features if available
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+# Set up for true color support
+export COLORTERM=truecolor
+export TERM=xterm-256color
