@@ -85,3 +85,16 @@ nnoremap <C-w>l <C-w>l
 nnoremap <C-w>+ <C-w>+
 nnoremap <C-w>- <C-w>-
 
+" Additional clipboard integration (for Linux)
+if has('unix') && executable('xclip')
+    vmap <C-c> "+y
+    vmap <C-x> "+x
+    map <C-v> "+gP
+endif
+
+" Additional clipboard integration (for macOS)
+if has('mac') && executable('pbcopy')
+    vmap <C-c> :w !pbcopy<CR><CR>
+    vmap <C-x> :w !pbcopy<CR><CR>:!rm %<CR>
+    nmap <C-v> :r !pbpaste<CR>
+endif
