@@ -136,9 +136,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# Launch tmux automatically when Wezterm is started
+# Launch tmux automatically when WezTerm is started
 if [[ -n "$WEZTERM_PID" ]] && [[ -z "$TMUX" ]]; then
   # Generate a unique session name based on the current directory
   session_name="$(basename "$(pwd)")"
   tmux new-session -A -s "$session_name"
 fi
+
+# Set up for WezTerm's true color support
+export COLORTERM=truecolor
+export TERM=xterm-256color
